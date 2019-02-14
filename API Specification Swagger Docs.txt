@@ -1,0 +1,134 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"description": "A service to accept Stream & integer N to calculate moving average of the last N elements in Stream",
+		"version": "v1",
+		"title": "Demo Moving-Average Service"
+	},
+	"host": "localhost:5000",
+	"basePath": "/",
+	"tags": [{
+		"name": "demo-controller",
+		"description": "Demo Controller"
+	}],
+	"paths": {
+		"/v1/ApplicationHealth": {
+			"get": {
+				"tags": ["demo-controller"],
+				"summary": "perform application health check",
+				"operationId": "healthStatusUsingGET",
+				"consumes": ["application/json", "application/json;charset=UTF-8"],
+				"produces": ["*/*", "application/json;charset=UTF-8"],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Access denied - Authentication required"
+					},
+					"403": {
+						"description": "Access denied - Not authorized"
+					}
+				}
+			}
+		},
+		"/v1/get/stream/moving-average/last/{nthElement}": {
+			"get": {
+				"tags": ["demo-controller"],
+				"summary": "Retrieve moving-average of the last N elements added",
+				"operationId": "getMovingAverageUsingGET",
+				"consumes": ["application/json", "application/json;charset=UTF-8"],
+				"produces": ["*/*", "application/json;charset=UTF-8"],
+				"parameters": [{
+					"name": "nthElement",
+					"in": "path",
+					"description": "nthElement",
+					"required": true,
+					"type": "integer",
+					"format": "int32"
+				}, {
+					"name": "stream",
+					"in": "query",
+					"description": "stream",
+					"required": true,
+					"type": "array",
+					"items": {
+						"type": "number",
+						"format": "double"
+					},
+					"collectionFormat": "multi"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/APIResponse"
+						}
+					},
+					"401": {
+						"description": "Access denied - Authentication required"
+					},
+					"403": {
+						"description": "Access denied - Not authorized"
+					}
+				}
+			}
+		}
+	},
+	"definitions": {
+		"APIResponse": {
+			"type": "object",
+			"properties": {
+				"status": {
+					"type": "string",
+					"example": "SUCCESS",
+					"description": "Response SUCCESS"
+				},
+				"responseTimestamp": {
+					"type": "string",
+					"example": "2019-10-28T15:01:35",
+					"description": "Transaction Timestamp"
+				},
+				"correlationId": {
+					"type": "string",
+					"example": "5b20ec7eacbcd18e",
+					"description": "correlationId"
+				},
+				"result": {
+					"type": "array",
+					"example": "Moving Average Result",
+					"description": "correlationId",
+					"items": {
+						"$ref": "#/definitions/QueueAggregate"
+					}
+				}
+			}
+		},
+		"QueueAggregate": {
+			"type": "object",
+			"properties": {
+				"lastNElement": {
+					"type": "number",
+					"format": "double"
+				},
+				"movingAverage": {
+					"type": "number",
+					"format": "double"
+				},
+				"period": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"set": {
+					"type": "string"
+				},
+				"stream": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}
