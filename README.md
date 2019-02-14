@@ -14,8 +14,20 @@ Write an interface for a data structure that can provide the moving average of t
    ### Feature
    A Restful service API to Calculate moving average of last N elements from input stream.
    
+   ### MovingAverageLastNElement Datastructure documentation
+   
+   
    ### Tech Stacks
-     Framework - Springboot
+   Jave - 1.8
+   Framework - Springboot 1.5.x and Spring Cloud dependencies Dalston.SR3
+   API Documentation - Swagger2
+   Spring DependencyManagement
+     Springboot Starter Web
+     Springboot Starter
+     Spring Cloud Starter Config
+     Spring provided internal tomcat 
+   Build and Compile - Maven
+   
 
 
 ## Design Question
