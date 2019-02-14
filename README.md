@@ -124,4 +124,7 @@ When visitor browse page it loads page and as part of loading it executes GA tra
 
 ![High level design](https://github.com/ramprakash4u/SDEChallenge/blob/feature-Code-Challenge-Moving-Average-LastNelement/Design.png)
 
+
+### Detailed Component Design
+
  
