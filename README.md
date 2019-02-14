@@ -96,8 +96,14 @@ Write event - Billions of write events per day.
 Read event - Lets assume Millions of merchant visit 5 times a day on average for time-series related metrics. so it will be 5 Millions per day.
   New Read event per second -: 5B / (24 hours * 3600 seconds) = 57 reads per second.
 
-  Well! above may not the right numbers if we talk about real world users and drive numbers based on number of merchants for google
-  analytics. There are factors that might change numbers above.
-       People don't live in perfectly distributed demographic around the world
-       People don't access the favroutie application perfectly like its smooth blended people using application
-       There will be peaks and drops in usage based on where the most concentrated user base around the world. It could be North america and eastern europe or it could be South Asia. it depends which geography the Google analytics is widely that gives more detail information on daily penetration traafic.
+  Well! above may not the right numbers if we talk about real world users and deriving numbers based on number of merchants for google
+  analytics may not be accurate. There are factors that might change numbers above. People don't live in perfectly distributed demographic around the world . People don't access the favroutie application perfectly like its smooth blended people using application across world. There will be peaks and drops in usage based on where the most concentrated user base around the world. It could be North america and eastern europe or it could be South Asia etc. So it depends which geography the Google analytics is widely used and it gives different pattern based on user base. 
+  
+  So for sake of design lets say 
+  1. Out of Millions merchant users the 70% are active merchant who return back to google analytics on daily basis. So ~700K active merchants
+  2. Out of those 70% active merchant(700k) there are only 70% who access google analytics in peak hours. So ~ 490K peak hour merchants
+  3. 490 k / 60 * 60 = ~136 concurrent merchants per second during peak hours.
+  
+  So we optimize our system for ~136 concurrent merchants read request per second to support peak hours. 
+  
+  
