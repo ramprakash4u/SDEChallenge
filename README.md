@@ -129,8 +129,9 @@ GA JavaScript Schedo code
    gtag('config','UA-123456789');    
  </scripts>       
        
-When visitor browse page it loads page and as part of loading it executes GA tracking javascript which sends user cookies to Analytics backend server for processing. Analytics server process data and present user activity information in form of reporting to business merchants.
+When visitor browse page it loads page and as part of loading it executes GA tracking javascript which sends user cookies to Analytics backend server for processing. Analytics server process data and present user activity information in form of reporting to business merchants.        
+      
 
-https://github.com/ramprakash4u/SDEChallenge/blob/feature-Code-Challenge-Moving-Average-LastNelement/Design.png
+[High level design](https://github.com/ramprakash4u/SDEChallenge/blob/feature-Code-Challenge-Moving-Average-LastNelement/Design.png)
 
  
