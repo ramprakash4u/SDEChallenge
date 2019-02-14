@@ -10,7 +10,11 @@ Write an interface for a data structure that can provide the moving average of t
 2. Provide an implementation for the interface
 3. Provide any additional explanation about the interface and implementation in a README file.
 
-Solution 
+## Solution:
+   ### Feature : 
+        Restful API to Calculate moving average of last N elements from input stream.
+
+
 
 ## Design Question
 
