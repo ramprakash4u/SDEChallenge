@@ -73,6 +73,9 @@ We need to provide Google Analytic like services to our customers. Please provid
    ###### Swagger URL
    http://localhost:5000/swagger-ui.html#!/mi-vs-controller/
    
+   ![Swagger1](https://github.com/ramprakash4u/SDEChallenge/blob/feature-Code-Challenge-Moving-Average-LastNelement/Swagger1.png)
+   ![Swagger1](https://github.com/ramprakash4u/SDEChallenge/blob/feature-Code-Challenge-Moving-Average-LastNelement/Swagger2.png)
+   ![Swagger1](https://github.com/ramprakash4u/SDEChallenge/blob/feature-Code-Challenge-Moving-Average-LastNelement/Swagger3.png)
    
 ## 2. Google Analytics Design Documentation
 
