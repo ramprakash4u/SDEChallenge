@@ -42,3 +42,20 @@ We need to provide Google Analytic like services to our customers. Please provid
 3. Provide metrics to customers with at most one hour delay.
 4. Run with minimum downtime.
 5. Have the ability to reprocess historical data in case of bugs in the processing logic.
+
+## Solution:
+
+### What is Google Analytics
+It is web Analytics tool to provide User Activity that helps in understanding the user traffic metadata on a website. 
+
+Use Case
+  1. Helps to understand customers by Geo
+  2. Most visited page and how many times a page is visited in single day
+  3. How much time spent by user on specific page
+  4. New user versus returning users metrics
+  5. what Browser, operating system- mobile, desktop, mac, windows etc used by user to visit website
+  
+
+### Requirements and Goals of system
+
+
