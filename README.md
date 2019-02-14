@@ -69,7 +69,7 @@ What we wish to achieve from Google Analytics -: A backend system that tracks an
 3. Page metrics to show how many times website hit by different user, new user or returning user, behaviour information
 4. Source of access - Website used directly or from social media or organic search.
 
-### Non Functional Requirement
+#### Non Functional Requirement
 1. Handle large write volume: Billions of write events per day.
 2. Handle large read/query volume: Millions of merchants wish to gain insight into their business. Read/Query patterns are time-series
    related metrics.
@@ -77,7 +77,7 @@ What we wish to achieve from Google Analytics -: A backend system that tracks an
 4. Run with minimum downtime.
 5. Have the ability to reprocess historical data in case of bugs in the processing logic.
 
-### Extended Requirement
+#### Extended Requirement
 
 
 
