@@ -116,6 +116,17 @@ Read event - Lets assume Millions of merchant visit 5 times a day on average for
   if backend system receives 93 GB data per day then  93GB per day / 86400 = 1 MB / sec.
   
 ### High Level Design
-
+At high level the google analytics like system that collects user activity does four things Configuration, Collection, Processing and Reporting. The client application website requires to configure GA tracking java script in 
                     
-  
+GA JavaScript snnipet
+<!--Global site tag(gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-123456789"></script?
+   <script>
+      window.dataLayer=window.dataLayer || [];
+      function gtag() {dataLayer.push(arguments);}
+      gtag('js', new Date());
+   gtag ('js', new Date());
+   gtag('config','UA-123456789');
+ </scripts>
+ 
+ 
