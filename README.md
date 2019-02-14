@@ -9,25 +9,7 @@ Write an interface for a data structure that can provide the moving average of t
 1. Provide a separate interface (IE `interface`/`trait`) with documentation for the data structure
 2. Provide an implementation for the interface
 3. Provide any additional explanation about the interface and implementation in a README file.
-
-## Solution:
-   ### Feature
-   A Restful service API to Calculate moving average of last N elements from input stream.
-   
-   ##### MovingAverageLastNElement Datastructure documentation
-   
-   
-   ##### Tech Stacks
-   Jave - 1.8  
-   Framework - Springboot 1.5.x and Spring Cloud dependencies Dalston.SR3  
-   API Documentation - Swagger2  
-   Spring DependencyManagement  
-     Springboot Starter Web  
-     Springboot Starter  
-     Spring Cloud Starter Config  
-     Spring provided internal tomcat   
-   Build and Compile - Maven  
-   
+  
 
 
 ## Design Question
@@ -44,6 +26,55 @@ We need to provide Google Analytic like services to our customers. Please provid
 5. Have the ability to reprocess historical data in case of bugs in the processing logic.
 
 ## Solution:
+
+## 1. Coding Question Documentation
+### Feature
+   A Restful service API to Calculate moving average of last N elements from input stream.
+   
+   ##### MovingAverageLastNElement Datastructure documentation
+   This class is implementation of interface "MovingAverageDataStructureIE" to calculate moving average of last N element.
+   it calculates moving average with time complexity-> O(1) by keeping track of four things head & tail of queue , Size of current queue/buffer and queueTotal as sum of all elements from current queue/buffer.
+   
+  @see com.paytmlabs.demo.service.MovingAverageDataStructureIE#movingAvgOfLastNElement(java.lang.Double, java.lang.Integer)
+     
+   This method calculates and returns moving average of last N element from stream
+	    -:  Accepts new element to be added in queue from stream of input data
+	     -:  Accepts maxSize of queue as duration/period for which moving average needs to be calculated
+	     -:  Maitains the first(head) element and last(tail) element of queue
+	     -:  Removes first element entered in FIFO queue buffer, once buffer is full based on input maxSize and decrement queueTotal &
+            queue size
+	     -:  Maintains the size of queue buffer equal to input maxSize
+	     -:  Size -> Increment and calculates current total queue/buffer size upon addition of new element
+	     -:  queueTotal -> Calculates Sum of all elements from current queue/buffer
+	     -:  calculates moving average with time complexity-> O(1) 
+  
+  Additonally Restful Webservice API is created to use the MovingAverageLastNElement datastructure. 
+  The API calculate moving average of last N element from input stream. It accepts duration/period and input stream to calculate moving average. The details documentaiton can be found on Swagger and Controller class.
+    
+    
+   ##### Tech Stacks
+   Jave - 1.8  
+   Framework - Springboot 1.5.x and Spring Cloud dependencies Dalston.SR3  
+   API Documentation - Swagger2  
+   Spring DependencyManagement  
+     Springboot Starter Web  
+     Springboot Starter  
+     Spring Cloud Starter Config  
+     Spring provided internal tomcat   
+   Build and Compile - Maven     
+   
+   ##### Install and run
+   Maven: Compile Install to generate executable jar.
+   spring-boot:run to run the application. it uses springboot provided internal tomcat on port 5000 configured in bootstrap.yml to start application.  
+   
+   You can view the api documentation in swagger-ui by pointing to 
+   http://localhost:5000
+   
+   ###### Swagger URL
+   http://localhost:5000/swagger-ui.html#!/mi-vs-controller/
+   
+   
+## 2. Google Analytics Design Documentation
 
 ### What is Google Analytics
 It is web Analytics tool to provide User Activity that helps in understanding the user traffic metadata on a website. 
