@@ -91,5 +91,13 @@ Our backend service will be write heavy (billions of writes events per day). The
 
 #### Traffic Estimates
 Write event - Billions of write events per day.   
-Read event - Lets assume Millions of merchant visit 5 times a day on average for time-series related metrics.
+  New write event per second -: 1B / (24 hours * 3600 seconds) = 12K writes per second
+                             
+Read event - Lets assume Millions of merchant visit 5 times a day on average for time-series related metrics. so it will be 5 Millions per day.
+  New Read event per second -: 5B / (24 hours * 3600 seconds) = 57 reads per second.
 
+  Well! above may not the right numbers if we talk about real world users and drive numbers based on number of merchants for google
+  analytics. There are factors that might change numbers above.
+       People don't live in perfectly distributed demographic around the world
+       People don't access the favroutie application perfectly like its smooth blended people using application
+       There will be peaks and drops in usage based on where the most concentrated user base around the world. It could be North america and eastern europe or it could be South Asia. it depends which geography the Google analytics is widely that gives more detail information on daily penetration traafic.
