@@ -117,17 +117,7 @@ Read event - Lets assume Millions of merchant visit 5 times a day on average for
   
 ### High Level Design
 At high level the google analytics like system that collects user activity does four things Configuration, Collection, Processing and Reporting. The client application website requires to configure GA tracking java script something similar below schedu code to be configured on html page which have Prod account number for production(UA-123456789) and Non prod account for lower environments. it can go in common header section of html. For similicity of this design our focus is on backend system design, so will not go much in detail on user/client website configuration of javascript.
-                    
-GA JavaScript Schedo code  
-<!--Global site tag(gtag.js) - Google Analytics -->   
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-123456789"></script?   
-   <script>  
-      window.dataLayer=window.dataLayer || [];   
-      function gtag() {dataLayer.push(arguments);}   
-      gtag('js', new Date());   
-   gtag ('js', new Date());    
-   gtag('config','UA-123456789');    
- </scripts>       
+   
        
 When visitor browse page it loads page and as part of loading it executes GA tracking javascript which sends user cookies to Analytics backend server for processing. Analytics server process data and present user activity information in form of reporting to business merchants.        
       
