@@ -92,7 +92,7 @@ Our backend service will be write heavy (billions of writes events per day). The
 #### Traffic Estimates
 Write event - Billions of write events per day.   
   New write event per second -: 1B / (24 hours * 3600 seconds) = 12K writes per second
-                             
+                    
 Read event - Lets assume Millions of merchant visit 5 times a day on average for time-series related metrics. so it will be 5 Millions per day.
   New Read event per second -: 5B / (24 hours * 3600 seconds) = 57 reads per second.
 
@@ -106,4 +106,16 @@ Read event - Lets assume Millions of merchant visit 5 times a day on average for
   
   So we optimize our system for ~136 concurrent merchants read request per second to support peak hours. 
   
+#### Storage Estimates
+ Lets assume on average the metadata for user activity message is 100 bytes. Assumption is only 5 years historical information will be maintained in system.
+ 
+     1 billion write request messages per day * 100 bytes => 93 GB/day
+     To store 5 years history =  93GB/day * 365 * 5 years = 0.164 PB
+     
+#### Bandwidth Estimation
+  if backend system receives 93 GB data per day then  93GB per day / 86400 = 1 MB / sec.
+  
+### High Level Design
+
+                    
   
