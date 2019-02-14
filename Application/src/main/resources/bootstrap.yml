@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: Moving.Average.Service
+  profiles:
+    active: local
+    
+server:
+   port: 5000
+
+
