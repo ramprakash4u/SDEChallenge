@@ -87,6 +87,9 @@ What we wish to achieve from Google Analytics -: A backend system that tracks an
 - Provide hytorical information older than 2 months.
 
 ### Capacity Estimation and Constraints
+Our backend service will be write heavy (billions of writes events per day). There will be write event for all user activity on customer websites compared to read happens by millions of merchants who may pull analytics report may be once or couple of times in day.
 
-
+#### Traffic Estimates
+Write event - Billions of write events per day. 
+Read event - Lets assume Millions of merchant visit 5 times a day on average for time-series related metrics.
 
