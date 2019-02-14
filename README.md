@@ -57,5 +57,28 @@ Use Case
   
 
 ### Requirements and Goals of system
+Let's Design Google Analytics like service Backend System!! 
+
+For sake of this design document let's restrict to have some few basic feature of Google Analytics like system as oppose to all features that google analytics provides.
+
+What we wish to achieve from Google Analytics -: A backend system that tracks and reports website traffic from users in form of user friendly Analytics report metrics in order to improve company sales, understanding user behaviour, Customer relationship management- CRM.
+
+#### Fucntional Requirement
+1. Business team should be able to track and get there website user traffic by Geo.
+2. Website is used from mobile, desktop or tablet.
+3. Page metrics to show how many times website hit by different user, new user or returning user, behaviour information
+4. Source of access - Website used directly or from social media or organic search.
+
+### Non Functional Requirement
+1. Handle large write volume: Billions of write events per day.
+2. Handle large read/query volume: Millions of merchants wish to gain insight into their business. Read/Query patterns are time-series
+   related metrics.
+3. Provide metrics to customers with at most one hour delay.
+4. Run with minimum downtime.
+5. Have the ability to reprocess historical data in case of bugs in the processing logic.
+
+### Extended Requirement
+
+
 
 
