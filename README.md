@@ -79,6 +79,14 @@ What we wish to achieve from Google Analytics -: A backend system that tracks an
 
 #### Extended Requirement
 
+1. How much time a user spend on particular page ?
+2. Analytics- How many times redirection happened.
+
+#### Not in Scope
+- Provide full analytics solution and all metrics that currently google analytics provide.
+- Provide hytorical information older than 2 months.
+
+### Capacity Estimation and Constraints
 
 
 
