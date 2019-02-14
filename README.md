@@ -37,16 +37,17 @@ We need to provide Google Analytic like services to our customers. Please provid
    
   @see com.paytmlabs.demo.service.MovingAverageDataStructureIE#movingAvgOfLastNElement(java.lang.Double, java.lang.Integer)
      
-   This method calculates and returns moving average of last N element from stream
-	    -:  Accepts new element to be added in queue from stream of input data
-	     -:  Accepts maxSize of queue as duration/period for which moving average needs to be calculated
-	     -:  Maitains the first(head) element and last(tail) element of queue
-	     -:  Removes first element entered in FIFO queue buffer, once buffer is full based on input maxSize and decrement queueTotal &
-            queue size
-	     -:  Maintains the size of queue buffer equal to input maxSize
-	     -:  Size -> Increment and calculates current total queue/buffer size upon addition of new element
-	     -:  queueTotal -> Calculates Sum of all elements from current queue/buffer
-	     -:  calculates moving average with time complexity-> O(1) 
+   This method calculates and returns moving average of last N element from stream  
+   1. Accepts new element to be added in queue from stream of input data
+   2. Accepts maxSize of queue as duration/period for which moving average needs to be calculated
+   3. Maitains the first(head) element and last(tail) element of queue
+   4. Removes first element entered in FIFO queue buffer, once buffer is full based on input maxSize and decrement queueTotal & queue
+   size
+   5. Maintains the size of queue buffer equal to input maxSize
+   6. Size -> Increment and calculates current total queue/buffer size upon addition of new element
+   7. queueTotal -> Calculates Sum of all elements from current queue/buffer
+   8. calculates moving average with time complexity-> O(1)    
+   
   
   Additonally Restful Webservice API is created to use the MovingAverageLastNElement datastructure. 
   The API calculate moving average of last N element from input stream. It accepts duration/period and input stream to calculate moving average. The details documentaiton can be found on Swagger and Controller class.
