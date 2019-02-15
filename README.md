@@ -91,7 +91,7 @@ We need to provide Google Analytic like services to our customers. Please provid
    #### In essence of scope of question the TDD development approach was not used but for better engineering practise TDD(Test driven development) could have been utilized where feature file is created with all Given, When , Then for business scenarios and Unit & Automation test case have written for 100% coverage of business scenarios and atleast 80% coverage (unit tested) for overall project.
    
    You can view the api documentation in swagger-ui by pointing to 
-   http://localhost:5000
+   http://localhost:5000  and API endpoint specification (Payload request & Response) is mentioned in file "API Specification Swagger Docs.txt" uploaded to code base.
    
    ###### Swagger URL
    http://localhost:5000/swagger-ui.html#!/mi-vs-controller/
