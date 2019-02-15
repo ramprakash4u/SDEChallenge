@@ -64,8 +64,8 @@ We need to provide Google Analytic like services to our customers. Please provid
      Spring provided internal tomcat   
    Build and Compile - Maven     
    
-   ##### Install and run
-   Maven: Compile Install to generate executable jar.
+   ##### Install and run  
+   Maven: Compile Install to generate executable jar.  
    spring-boot:run to run the application. it uses springboot provided internal tomcat on port 5000 configured in bootstrap.yml to start application.  
    
    ##### TEST RUN using POSTMAN for API endpoint MovingAverageLastNElement
