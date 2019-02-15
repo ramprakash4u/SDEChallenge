@@ -183,3 +183,9 @@ When visitor browse page it loads page and as part of loading it executes GA tra
 
 
 ### Detailed Component Design
+In order to build simple design system and for sake of this design lets consider website user activity is captured using click event from website page. The backend system for google analytics is designed on Microservices Architecture platform using API based restful service. 
+
+Assumptions-: The metrics provided by Google analytics to user may not be Real-time,there will be slight lag.    
+
+The authentication will happen at API gateway entry level where user website page sends Google Analytics account ex - "UA1234567" configured on GA javascript. The UA** account# for user production system will be different than development or lower environment and accordingly the metrics will also differ based on account information sent.    
+
