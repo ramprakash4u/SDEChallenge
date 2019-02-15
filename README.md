@@ -164,7 +164,7 @@ Read event - Lets assume Millions of merchant visit 5 times a day on average for
   So we optimize our system for ~136 concurrent merchants read request per second to support peak hours. 
   
 #### Storage Estimates
- Lets assume on average the metadata for user activity message is 100 bytes. Assumption is only 5 years historical information will be maintained in system.
+ Lets assume on average the metadata for user activity message is 100 bytes. Assumption is only 5 years historical information will be maintained in system. Condition - not all data will be maintained in system but only some high level metadata will be available for historical pulls
  
      1 billion write request messages per day * 100 bytes => 93 GB/day
      To store 5 years history =  93GB/day * 365 * 5 years = 0.164 PB
@@ -185,6 +185,10 @@ When visitor browse page it loads page and as part of loading it executes GA tra
 ### Detailed Component Design
 In order to build simple design system and for sake of this design lets consider website user activity is captured using click event from website page. The backend system for google analytics is designed on Microservices Architecture platform using API based restful service. 
 
+At high level the backend system is designed to meet following
+1. Highly 
+
+
 Assumptions-: The metrics provided by Google analytics to user may not be Real-time,there will be slight lag.    
 
 #### Security
@@ -197,6 +201,8 @@ At high level, the overall Google analytics processing flow is divided in four b
 3. Processing - In this Google Analtics Read and Write API based on message type along with other processing API process the injestion message for reporting.    
 4. Reporting-: Finally in reporting provides different type of metrics and time series metrics.
 
+#### Measurement Protocol
+It allows developers to make HTTP requests to send raw user interaction data directly to Google Analytics servers. It also provides capability to manage devices. for example it can help client / user to manage and make choice to send data from devices that are connected to the internet like in-store tills, kiosks, etc
 #### API Gateway -:  
 The API gateway server as single point entry gate for injestion incoming request for user activity. It deals with security, throttling, caching ,monitoring , static response handling and load balancing. The autehntication happens at API gateway where it sends access token to Authentication service and after successful authentication service returns back JWT token which is passed in downstream private API's. The API gateway also determines the type of message to route whether it needs to route towards READ API or WRITE API. The READ API will accept request from Merchant users that want to see Analytics metrics, time series metrics. The WRITE API will accept request from user website click event that needs to get stored in database on top of which processing and reporting can be done.
 
@@ -215,7 +221,7 @@ Memcached serves best for design as it easy for implementation with simple query
 When to update Cache -: Since you can only store a limited amount of data in cache, "Cache-aside" mechanism known as lazy loading serves best for design. Only requested data is cached, which avoids filling up the cache with data that isn't requested.
 
 #### Database -:
-SQL vs NoSQL ? -: Choice is SQL in our use case. The RDBMS type database fits best for this design as oppose to NoSQL as nature of data is Structured data, Relational in nature, Lookups by index are very fast. NoSQL db fits in use case where data is mostly non structured. In our case most if information is actually metadata of website user activity stream. RDBMS also provide ACID for transactions.  
+SQL vs NoSQL ? -: Choice is SQL in our use case. The RDBMS-POSTgreSQL database type database fits best for this design as oppose to NoSQL as nature of data is Structured data, Relational in nature, Lookups by index are very fast. NoSQL db fits in use case where data is mostly non structured. In our case most if information is actually metadata of website user activity stream. RDBMS also provide ACID for transactions.  
 
 For better scaling purpose the Database is designed using following implementation strategy  
 
@@ -257,5 +263,23 @@ Spring dependencyManagement
 	- Spring data / JPA    
 	- Spring Integration   
 
-### Flow of data
+### Flow of data processing
+
+#### WRITE API
+1. When user click website page the javascript GA send click event to API gateway.
+2. The API gateway is entry point for Google analytics backend system , it accepts write request and sends to authentication service to authenticate write transaction.
+3. After successful authentication, authentication service sends back JWT token back to API gatway.
+4. API gateway based on request type directs the message to WRITE API
+5. WRITE API send to Metadata API to process data and after successful processing Metadata API sends back to WRITE API, then WRITE API writes the processed data to Write both Master database. For every write transaction data is replicated using replication to replication database.
+
+
+#### READ API
+1. When Merchant business user login to dashboard request goes to API Gateway for authentication.
+2. After successful authentication Merchant user sends time series queries or other queries to backend system which API gateway directs request to READ API.
+3. READ API checks if the query results is stored in Memcache object store, if yes then it retireves the metadata information and some of query results.
+4. If query results are not in Memcahce then request goes to process Core reporting service.
+5. The timeseries queries are directed to Real time reporting API to get information.
+
+#### Re-process historical data
+The Google anaytics will have Import functionality to import user provided data for other source and re-process it. For example if merchant exported a list of all pages tracked by GA since they started collecting and created a CSV containing the URL and Article ID in separate columns to import into GA and use import to import data that will be re-processed by backend system Write API.
 
