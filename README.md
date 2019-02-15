@@ -88,7 +88,7 @@ We need to provide Google Analytic like services to our customers. Please provid
   
   step 8- Ninth input goes from input stream {1,-9.5,5.2,4,5,6,7,0.2,0.33} for processing, buffer is again full so API will remove head element from queue and the calculate moving average, the queueSize is 5, the moving average = (5+6+7+0.2+0.33)/5 = 3.706
   
-   #### In essence of scope of question the TDD development approach was not used but for better engineering practise TDD(Test driven development) could have been utilized where feature file is created with all Given, When , Then for business scenarios and Unit and Automation test case written for 100% coverage of business scenarios and atleast 80% coverage unit tested for overall project.
+   #### In essence of scope of question the TDD development approach was not used but for better engineering practise TDD(Test driven development) could have been utilized where feature file is created with all Given, When , Then for business scenarios and Unit & Automation test case have written for 100% coverage of business scenarios and atleast 80% coverage (unit tested) for overall project.
    
    You can view the api documentation in swagger-ui by pointing to 
    http://localhost:5000
