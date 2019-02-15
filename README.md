@@ -187,5 +187,24 @@ In order to build simple design system and for sake of this design lets consider
 
 Assumptions-: The metrics provided by Google analytics to user may not be Real-time,there will be slight lag.    
 
+#### Security
 The authentication will happen at API gateway entry level where user website page sends Google Analytics account ex - "UA1234567" configured on GA javascript. The UA** account# for user production system will be different than development or lower environment and accordingly the metrics will also differ based on account information sent.    
+
+#### Message Processing
+At high level, the overall Google analytics processing flow is divided in four below parts.  
+1. Collection -: At first step is to collect the user activity from user website using click events where user website page is configured with javascript GA ( has Google analytics account information as well )responsible to collect and send the event metadata information to google analytics backend servers.  
+2. Configuration - It about setting up rules for data processing and administrative functionality for message processing.   
+3. Processing - In this Google Analtics Read and Write API based on message type along with other processing API process the injestion message for reporting.    
+4. Reporting-: Finally in reporting provides different type of metrics and time series metrics.
+
+#### API Gateway -:  
+The API gateway server as single point entry gate for injestion incoming request for user activity. It deals with security, throttling, caching ,monitoring , static response handling and load balancing. The autehntication happens at API gateway where it sends access token to Authentication service and after successful authentication service returns back JWT token which is passed in downstream private API's. The API gateway also determines the type of message to route whether it needs to route towards READ API or WRITE API. The READ API will accept request from Merchant users that want to see Analytics metrics, time series metrics. The WRITE API will accept request from user website click event that needs to get stored in database on top of which processing and reporting can be done.
+
+#### Autentication service -:
+Oauth2- Ping implementation is used for authentication service. The API gateway send access token to ping service and ping service send back JWT token. The token is then passed to downstream private API's and also token has expiry ties with it. If any transaction takes more time to do complete processing downstream and expires... then it requires to send refresh token to get new token as oppose to access token as authentication already happened.
+
+#### Read API -: 
+The READ api accept will accept request from Merchant users that want to see Analytics metrics, time series metrics. It sends flow to 
+
+#### Write API-:
 
