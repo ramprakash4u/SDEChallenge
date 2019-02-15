@@ -68,6 +68,29 @@ We need to provide Google Analytic like services to our customers. Please provid
    Maven: Compile Install to generate executable jar.
    spring-boot:run to run the application. it uses springboot provided internal tomcat on port 5000 configured in bootstrap.yml to start application.  
    
+   ##### TEST RUN using POSTMAN for API endpoint MovingAverageLastNElement
+   http://localhost:5000/v1/get/stream/moving-average/last/{nthElement}?stream=[list<Double>]
+   
+   Example-:  http://localhost:5000/v1/get/stream/moving-average/last/5?stream=1,-9,5.2,4,5,6,7,0.2,0.33
+   In above example nthElement=5 which is bascically period/duration of last N element want to calcuate Moving average
+   Stream data input to endpoint is list - [1,-9,5.2,4,5,6,7,0.2,0.33]
+   
+   Step 1-  First input goes from input stream {1} for processing, queueSize is 1, the moving average = 1/1 = 1
+   Step 2-  Second input goes from input stream {1,-9.5} for processing, queueSize is 2, the moving average = (1 -9.5)/2 = -4
+   Step 3- Third input goes from input stream {1,-9.5,5.2} for processing, queueSize is 3, the moving average = (1 -9.5 + 5.2)/3 = -0.933
+   Step 4- Fourth input goes from input stream {1,-9.5,5.2,4} for processing, queueSize is 4, the moving average = (1 -9.5 + 5.2+4)/4 = 0.3
+   step 5- fifth input goes from input stream {1,-9.5,5.2,4,5} for processing, queueSize is 5, the moving average = (1 -9.5 + 5.2+4+5)/5 = 1.24
+   
+   step 6 - sixth input goes from input stream {1,-9.5,5.2,4,5,6} for processing, now here as buffer is full so API will remove head element from queue and the calculate moving average, the queueSize is 5, the moving average = (-9.5 + 5.2+4+5+6)/5 = 2.239
+   
+   step 7 - Seventh input goes from input stream {1,-9.5,5.2,4,5,6,7} for processing, buffer is again full so API will remove head element from queue and the calculate moving average, the queueSize is 5, the moving average = (5.2+4+5+6+7)/5 = 5.44
+   
+   step 8- Eighth input goes from input stream {1,-9.5,5.2,4,5,6,7,0.2} for processing, buffer is again full so API will remove head element from queue and the calculate moving average, the queueSize is 5, the moving average = (4+5+6+7+0.2)/5 = 4.43
+  
+  step 8- Ninth input goes from input stream {1,-9.5,5.2,4,5,6,7,0.2,0.33} for processing, buffer is again full so API will remove head element from queue and the calculate moving average, the queueSize is 5, the moving average = (5+6+7+0.2+0.33)/5 = 3.706
+  
+   
+   
    You can view the api documentation in swagger-ui by pointing to 
    http://localhost:5000
    
