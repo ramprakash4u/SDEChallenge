@@ -66,7 +66,7 @@ We need to provide Google Analytic like services to our customers. Please provid
    
    ##### Install and run  
    Maven: Compile Install to generate executable jar.  
-   spring-boot:run to run the application. it uses springboot provided internal tomcat on port 5000 configured in bootstrap.yml to start application.  
+   spring-boot:run to run the application. it uses springboot provided internal tomcat on port 5000 configured in bootstrap.yml to start application. you can change this port if you want to run on different port as it is configurable.
    
    ##### TEST RUN using POSTMAN for API endpoint MovingAverageLastNElement
    http://localhost:5000/v1/get/stream/moving-average/last/{nthElement}?stream=[list<Double>]
@@ -88,7 +88,7 @@ We need to provide Google Analytic like services to our customers. Please provid
   
   step 8- Ninth input goes from input stream {1,-9.5,5.2,4,5,6,7,0.2,0.33} for processing, buffer is again full so API will remove head element from queue and the calculate moving average, the queueSize is 5, the moving average = (5+6+7+0.2+0.33)/5 = 3.706
   
-   
+   #### In essence of scope of question the TDD development approach was not used but for better engineering practise TDD(Test driven development) could have been utilized where feature file is created with all Given, When , Then for business scenarios and Unit and Automation test case written for 100% coverage of business scenarios and atleast 80% coverage unit tested for overall project.
    
    You can view the api documentation in swagger-ui by pointing to 
    http://localhost:5000
