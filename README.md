@@ -231,30 +231,30 @@ Disadvantage
 The common service API provides some of common services required by all of the Private API of google analytics. 
 like Common security, Common logging service, comming config service. This will help to reduce lot of logic needed on individual application for some of these common service and also provides uniform tech stacks implementation of these common service which improces maintainability.
 
-Tech Stacks
-API framework - Springboot 2.x
-Security - Oauth2, Ping using JWT token and use Springboot security for implementation.
-Logging  Logstash, logback, Spring Sleuth
-Cloud Computing- AWS EC2, Elastic Beanstalk, Lamda function, Auto Scaling
-API Documentation - Swagger
-file Storage - S3
-Database- RDS PostgreSQL
-API - Rest API
-CICD - Git, bitbucket, Jenkins pipeline, AWS Code Commit, Code build, Code pipeline
-Logging- Spring Sleuth, Logstash, Elastic Search, Kibana, SLF4j
-Configuration - Spring Cloud Config
-Hystrix Circuit breaker
-Testing - unit testing using - Junit, Mockito, SpringMVC  and Automation testing - Rest Assured, Selenium 
-Monitoring & Alerting- Netcool, Cloudwatch alarm
-Spring dependencyManagement
-	- Springboot externalized configuration
-	- Springboot Actuator
-	- Springboot Internal Container Solution
-	- Springboot autoconfiguration
-	- Starter POM & Executable JAR
-	- Spring Cloud Config
-	- Spring Cloud Sleuth to generate Trans ID and Span ID for each transaction.
-	- Spring data / JPA
-	- Spring Integration
+Tech Stacks   
+API framework - Springboot 2.x    
+Security - Oauth2, Ping using JWT token and use Springboot security for implementation.     
+Logging  Logstash, logback, Spring Sleuth     
+Cloud Computing- AWS EC2, Elastic Beanstalk, Lamda function, Auto Scaling     
+API Documentation - Swagger    
+file Storage - S3    
+Database- RDS PostgreSQL    
+API - Rest API     
+CICD - Git, bitbucket, Jenkins pipeline, AWS Code Commit, Code build, Code pipeline    
+Logging- Spring Sleuth, Logstash, Elastic Search, Kibana, SLF4j    
+Configuration - Spring Cloud Config    
+Hystrix Circuit breaker    
+Testing - unit testing using - Junit, Mockito, SpringMVC  and Automation testing - Rest Assured, Selenium      
+Monitoring & Alerting- Netcool, Cloudwatch alarm   
+Spring dependencyManagement    
+	- Springboot externalized configuration    
+	- Springboot Actuator    
+	- Springboot Internal Container Solution    
+	- Springboot autoconfiguration   
+	- Starter POM & Executable JAR   
+	- Spring Cloud Config    
+	- Spring Cloud Sleuth to generate Trans ID and Span ID for each transaction.   
+	- Spring data / JPA    
+	- Spring Integration   
 
 
