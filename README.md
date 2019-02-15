@@ -72,8 +72,7 @@ We need to provide Google Analytic like services to our customers. Please provid
    http://localhost:5000/v1/get/stream/moving-average/last/{nthElement}?stream=[list<Double>]
    
    Example-:  http://localhost:5000/v1/get/stream/moving-average/last/5?stream=1,-9,5.2,4,5,6,7,0.2,0.33    
-   In above example nthElement=5 which is bascically period/duration of last N element want to calcuate Moving average     
-   Stream data input to endpoint is list - [1,-9,5.2,4,5,6,7,0.2,0.33]
+   In above example nthElement=5 , which is basically period/duration of last N element we want to calculate the Moving average from given stream of data input to API endpoint which is list - [1,-9,5.2,4,5,6,7,0.2,0.33]
    
    Step 1-  First input goes from input stream {1} for processing, queueSize is 1, the moving average = 1/1 = 1  
    Step 2-  Second input goes from input stream {1,-9.5} for processing, queueSize is 2, the moving average = (1 -9.5)/2 = -4   
