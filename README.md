@@ -71,8 +71,8 @@ We need to provide Google Analytic like services to our customers. Please provid
    ##### TEST RUN using POSTMAN for API endpoint MovingAverageLastNElement
    http://localhost:5000/v1/get/stream/moving-average/last/{nthElement}?stream=[list<Double>]
    
-   Example-:  http://localhost:5000/v1/get/stream/moving-average/last/5?stream=1,-9,5.2,4,5,6,7,0.2,0.33
-   In above example nthElement=5 which is bascically period/duration of last N element want to calcuate Moving average
+   Example-:  http://localhost:5000/v1/get/stream/moving-average/last/5?stream=1,-9,5.2,4,5,6,7,0.2,0.33    
+   In above example nthElement=5 which is bascically period/duration of last N element want to calcuate Moving average     
    Stream data input to endpoint is list - [1,-9,5.2,4,5,6,7,0.2,0.33]
    
    Step 1-  First input goes from input stream {1} for processing, queueSize is 1, the moving average = 1/1 = 1  
