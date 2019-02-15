@@ -204,7 +204,57 @@ The API gateway server as single point entry gate for injestion incoming request
 Oauth2- Ping implementation is used for authentication service. The API gateway send access token to ping service and ping service send back JWT token. The token is then passed to downstream private API's and also token has expiry ties with it. If any transaction takes more time to do complete processing downstream and expires... then it requires to send refresh token to get new token as oppose to access token as authentication already happened.
 
 #### Read API -: 
-The READ api accept will accept request from Merchant users that want to see Analytics metrics, time series metrics. It sends flow to 
+The READ API will accept request from Merchant users that want to see Analytics metrics, time series metrics. It sends flow to Real time reporting API (Assumption this will collect information of user activity in real time but may not have report available in real time may be assume there will be lag of 1 hour). The READ API also Cache top queries by Merchant that hold metadata and reporting information of most heavly used metrics by company/business, this will be less expensive call and reduce processing time, improve throughput , IO's.
 
 #### Write API-:
+The Write API will accept request of user activity , process and store in database for reporting. it send flow to Metadata API for processing.
+
+#### Cache- MemCached . 
+Memcached serves best for design as it easy for implementation with simple query on API code using key value store. it cache most used queries from user. Since the data is held in RAM it is much faster than where data is stored in database and database calls are more expensive. Query activity stream can be cached.
+
+When to update Cache -: Since you can only store a limited amount of data in cache, "Cache-aside" mechanism known as lazy loading serves best for design. Only requested data is cached, which avoids filling up the cache with data that isn't requested.
+
+#### Database -:
+SQL vs NoSQL ? -: Choice is SQL in our use case. The RDBMS type database fits best for this design as oppose to NoSQL as nature of data is Structured data, Relational in nature, Lookups by index are very fast. NoSQL db fits in use case where data is mostly non structured. In our case most if information is actually metadata of website user activity stream. RDBMS also provide ACID for transactions.  
+
+For better scaling purpose the Database is designed using following implementation strategy  
+
+###### Master- Master Slave replication.
+Both masters serve writes and coordinate with each other on writes, it fits best for our use case as our application is WRITE heavy. If either master goes down, the system can continue to operate with  writes. There will be replication setup to replicate writes to one or more slaves, which serve only reads.laves can also replicate to additional slaves in a tree-like fashion. If the master goes offline, the system can continue to operate in read-only mode until a slave is promoted to a master or a new master is provisioned.
+
+Disadvantage
+1. Most master-master systems are either loosely consistent (violating ACID) or have increased write latency due to synchronization. 
+2. Replication-: There is a potential for loss of data if the both master fails which is very unlikely in our case before any newly written data can be replicated to other nodes.
+3. Replication adds more hardware and additional complexity.
+
+#### Common Service.
+The common service API provides some of common services required by all of the Private API of google analytics. 
+like Common security, Common logging service, comming config service. This will help to reduce lot of logic needed on individual application for some of these common service and also provides uniform tech stacks implementation of these common service which improces maintainability.
+
+Tech Stacks
+API framework - Springboot 2.x
+Security - Oauth2, Ping using JWT token and use Springboot security for implementation.
+Logging  Logstash, logback, Spring Sleuth
+Cloud Computing- AWS EC2, Elastic Beanstalk, Lamda function, Auto Scaling
+API Documentation - Swagger
+file Storage - S3
+Database- RDS PostgreSQL
+API - Rest API
+CICD - Git, bitbucket, Jenkins pipeline, AWS Code Commit, Code build, Code pipeline
+Logging- Spring Sleuth, Logstash, Elastic Search, Kibana, SLF4j
+Configuration - Spring Cloud Config
+Hystrix Circuit breaker
+Testing - unit testing using - Junit, Mockito, SpringMVC  and Automation testing - Rest Assured, Selenium 
+Monitoring & Alerting- Netcool, Cloudwatch alarm
+Spring dependencyManagement
+	- Springboot externalized configuration
+	- Springboot Actuator
+	- Springboot Internal Container Solution
+	- Springboot autoconfiguration
+	- Starter POM & Executable JAR
+	- Spring Cloud Config
+	- Spring Cloud Sleuth to generate Trans ID and Span ID for each transaction.
+	- Spring data / JPA
+	- Spring Integration
+
 
