@@ -75,11 +75,11 @@ We need to provide Google Analytic like services to our customers. Please provid
    In above example nthElement=5 which is bascically period/duration of last N element want to calcuate Moving average
    Stream data input to endpoint is list - [1,-9,5.2,4,5,6,7,0.2,0.33]
    
-   Step 1-  First input goes from input stream {1} for processing, queueSize is 1, the moving average = 1/1 = 1
-   Step 2-  Second input goes from input stream {1,-9.5} for processing, queueSize is 2, the moving average = (1 -9.5)/2 = -4
-   Step 3- Third input goes from input stream {1,-9.5,5.2} for processing, queueSize is 3, the moving average = (1 -9.5 + 5.2)/3 = -0.933
-   Step 4- Fourth input goes from input stream {1,-9.5,5.2,4} for processing, queueSize is 4, the moving average = (1 -9.5 + 5.2+4)/4 = 0.3
-   step 5- fifth input goes from input stream {1,-9.5,5.2,4,5} for processing, queueSize is 5, the moving average = (1 -9.5 + 5.2+4+5)/5 = 1.24
+   Step 1-  First input goes from input stream {1} for processing, queueSize is 1, the moving average = 1/1 = 1  
+   Step 2-  Second input goes from input stream {1,-9.5} for processing, queueSize is 2, the moving average = (1 -9.5)/2 = -4   
+   Step 3- Third input goes from input stream {1,-9.5,5.2} for processing, queueSize is 3, the moving average = (1 -9.5 + 5.2)/3 = -0.933   
+   Step 4- Fourth input goes from input stream {1,-9.5,5.2,4} for processing, queueSize is 4, the moving average = (1 -9.5 + 5.2+4)/4 = 0.3   
+   step 5- fifth input goes from input stream {1,-9.5,5.2,4,5} for processing, queueSize is 5, the moving average = (1 -9.5 + 5.2+4+5)/5 = 1.24  
    
    step 6 - sixth input goes from input stream {1,-9.5,5.2,4,5,6} for processing, now here as buffer is full so API will remove head element from queue and the calculate moving average, the queueSize is 5, the moving average = (-9.5 + 5.2+4+5+6)/5 = 2.239
    
