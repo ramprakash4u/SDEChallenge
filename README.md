@@ -257,4 +257,5 @@ Spring dependencyManagement
 	- Spring data / JPA    
 	- Spring Integration   
 
+### Flow of data
 
